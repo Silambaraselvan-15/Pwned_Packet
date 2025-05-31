@@ -47,9 +47,13 @@ if __name__=="__main__":
         else:
             FileLocation =File_Loc_input
         
-        UserChoice=input("[x] Filter Specific Protocol(Y/N) : ")
+        UserChoice=input("[x] Filter Specific Protocol(Y)/enter for all : ")
         if UserChoice.lower() in {"y","Y"}:
+            print("Defined Protocol names :")
+            for i in KNOWN_PORTS:
+                print("[-]",i)
             SpecificPackets=input("[x] Protocol name :")
+            
             if SpecificPackets not in KNOWN_PORTS:
                 print("Unknown Protocol !")
             else:
