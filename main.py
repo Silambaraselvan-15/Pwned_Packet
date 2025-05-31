@@ -26,10 +26,10 @@ print(f"{AnsiColors.GREEN}{figlet}{AnsiColors.ENDC}")
 
 if __name__=="__main__":
     DEFAULT_LOCATION="capdata/"
-    DEFAULT_DURATION=10
+    DEFAULT_DURATION=60
     
     try:
-        Duration_input=input("How long you want to capture network ?(enter for default:60s) : ")
+        Duration_input=input("[x] Capture Duration?(enter for default:60s) : ")
         if not Duration_input:
             Duration=DEFAULT_DURATION
         else:
@@ -41,21 +41,20 @@ if __name__=="__main__":
             except ValueError:
                 print(f"Invalid input ! using Default {DEFAULT_DURATION}s")
                 Duration=DEFAULT_DURATION
-        File_Loc_input=input("where you want to save the captured packets ?(enter for defult: capdata/) : ")
+        File_Loc_input=input("[x] Where to save ? (enter for defult: capdata/) : ")
         if not File_Loc_input:
             FileLocation=DEFAULT_LOCATION
         else:
             FileLocation =File_Loc_input
         
-        UserChoice=input("default capturing or specific packet capture(Y/N) : ")
+        UserChoice=input("[x] Filter Specific Protocol(Y/N) : ")
         if UserChoice.lower() in {"y","Y"}:
-            SpecificPackets=input("what Specific packets you want to capture?(enter for default) :")
+            SpecificPackets=input("[x] Protocol name :")
             if SpecificPackets not in KNOWN_PORTS:
-                print("no protocol found")
-                
+                print("Unknown Protocol !")
             else:
                 Sniffer(Duration,FileLocation,SpecificPackets)
         else:
             Sniffer(Duration,FileLocation,None)
     except KeyboardInterrupt as e:
-        print(f"\n\nExiting the tool with CTRL+C !")
+        print(f"\n\n[x] Exiting the tool safely !")
