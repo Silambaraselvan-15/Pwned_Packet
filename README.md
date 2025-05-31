@@ -1,6 +1,6 @@
 # Pwned_Packet
 
-![](.img/logo.png)
+![alt for image](.img/logo.png)
 
 A basic but comprehensive command-line packet capturing tool built with Python and Scapy. It allows users to capture network traffic, filter by specific protocols, and save the results to a `.pcap` file for further analysis.
 
