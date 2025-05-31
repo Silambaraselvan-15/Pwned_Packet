@@ -5,9 +5,13 @@ import os
 from Config import KNOWN_PORTS
 
 
+class AnsiColors:
+    RED = '\033[91m'
+    ENDC='\033[0m'
 
 def Sniffer(Time,FileLocation,SpecificProtocol=None):
     def OutPut(pkt):
+        protocol_label = f"{AnsiColors.RED} PROTOCOL {AnsiColors.ENDC}"
         if SpecificProtocol:
             TargetPort=KNOWN_PORTS.get(SpecificProtocol.upper())
             if TargetPort is not None:
@@ -24,50 +28,50 @@ def Sniffer(Time,FileLocation,SpecificProtocol=None):
         elif SpecificProtocol==None:
             if pkt.haslayer(a.TCP):
                 if pkt.dport==443 or pkt.sport==443:
-                    print("PROTOCOL :[TLS/SSL] ",StructResult(pkt))
+                    print(f"[{protocol_label}: TLS/SSL] ",StructResult(pkt))
                 elif pkt.dport == 22 or pkt.sport == 22:
-                    print("PROTOCOL :[SSH] ", StructResult(pkt))
+                    print(f"[{protocol_label}: SSH] ", StructResult(pkt))
                 elif pkt.dport == 80 or pkt.sport == 80:
-                    print("PROTOCOL :[HTTP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: HTTP] ", StructResult(pkt))
                 elif pkt.dport == 21 or pkt.sport == 21:
-                    print("PROTOCOL :[FTP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: FTP] ", StructResult(pkt))
                 elif pkt.dport == 23 or pkt.sport == 23:
-                    print("PROTOCOL :[Telnet] ", StructResult(pkt))
+                    print(f"[{protocol_label}: Telnet] ", StructResult(pkt))
                 elif pkt.dport == 25 or pkt.sport == 25:
-                    print("[PROTOCOL :SMTP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: SMTP] ", StructResult(pkt))
                 elif pkt.dport == 110 or pkt.sport == 110:
-                    print("PROTOCOL :[POP3] ", StructResult(pkt))
+                    print(f"[{protocol_label}: POP3] ", StructResult(pkt))
                 elif pkt.dport == 143 or pkt.sport == 143:
-                    print("PROTOCOL :[IMAP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: IMAP] ", StructResult(pkt))
                 elif pkt.dport == 445 or pkt.sport == 445:
-                    print("PROTOCOL :[SMB] ", StructResult(pkt))
+                    print(f"[{protocol_label}: SMB] ", StructResult(pkt))
                 elif pkt.dport == 3306 or pkt.sport == 3306:
-                    print("PROTOCOL :[MySQL] ", StructResult(pkt))
+                    print(f"[{protocol_label}: MySQL] ", StructResult(pkt))
                 elif pkt.dport == 5432 or pkt.sport == 5432:
-                    print("PROTOCOL :[PostgreSQL] ", StructResult(pkt))
+                    print(f"[{protocol_label}: PostgreSQL] ", StructResult(pkt))
                 elif pkt.dport == 5060 or pkt.sport == 5060:
-                    print("PROTOCOL :[SIP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: SIP] ", StructResult(pkt))
                 elif pkt.dport == 179 or pkt.sport == 179:
-                    print("PROTOCOL :[BGP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: BGP] ", StructResult(pkt))
             elif pkt.haslayer(a.UDP):
                 if pkt.dport==53 or pkt.sport==53:
-                    print("PROTOCOL :[DNS] ",StructResult(pkt))
+                    print(f"[{protocol_label}: DNS] ",StructResult(pkt))
                 elif pkt.dport == 161 or pkt.sport == 161:
-                    print("PROTOCOL :[SNMP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: SNMP] ", StructResult(pkt))
                 elif pkt.dport == 123 or pkt.sport == 123:
-                    print("PROTOCOL :[NTP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: NTP] ", StructResult(pkt))
                 elif pkt.dport == 69 or pkt.sport == 69:
-                    print("PROTOCOL :[TFTP] ", StructResult(pkt))
+                    print(f"[{protocol_label}: TFTP] ", StructResult(pkt))
                 elif pkt.dport == 5060 or pkt.sport == 5060:
-                    print("PROTOCOL :[SIP] ", StructResult(pkt)())
+                    print(f"[{protocol_label}: SIP] ", StructResult(pkt)())
             elif pkt.haslayer(a.ICMP):
-                print("PROTOCOL : [ICMP] ", StructResult(pkt))   
+                print(f"[{protocol_label}: ICMP] ", StructResult(pkt))   
             elif pkt.haslayer(a.ICMPv6ND_NA):
-                print("PROTOCOL : [ICMPv6 ND-NA]",StructResult(pkt))
+                print(f"[{protocol_label}: ICMPv6 ND-NA]",StructResult(pkt))
             elif pkt.haslayer(a.ICMPv6ND_NS):
-                print("PROTOCOL : [ICMPv6 ND-NS] ",StructResult(pkt))
+                print(f"[{protocol_label}: ICMPv6 ND-NS] ",StructResult(pkt))
             elif pkt.haslayer(a.ARP):
-                print("PROTOCOL : [ARP]",StructResult(pkt))
+                print(f"[{protocol_label}: ARP]",StructResult(pkt))
             else:
                 print("---------------------------------undefined protocol ! ---------------------------------------------------------------------")
                 pkt.show()
@@ -96,5 +100,5 @@ def Sniffer(Time,FileLocation,SpecificProtocol=None):
 
 
     DstDir=os.path.join(FileLocation,f"Captured_Data.pcap")
-    print(f"Saving Capture file in {DstDir}")
+    print(f"Saving Captured file in {DstDir}")
     a.wrpcap(DstDir,Cpackets.results)
