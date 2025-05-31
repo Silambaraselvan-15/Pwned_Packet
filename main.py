@@ -1,12 +1,34 @@
 from Config import KNOWN_PORTS,DEFAULT_DURATION,DEFAULT_LOCATION
 from SnifferCore import Sniffer
 
+class AnsiColors:
+    GREEN = '\033[92m'
+    RED = '\033[91m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    ENDC = '\033[0m' 
+
+
+figlet="""
+██████╗ ██╗    ██╗███╗   ██╗███████╗██████╗ ██████╗  █████╗  ██████╗██╗  ██╗███████╗████████╗
+██╔══██╗██║    ██║████╗  ██║██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝
+██████╔╝██║ █╗ ██║██╔██╗ ██║█████╗  ██║  ██║██████╔╝███████║██║     █████╔╝ █████╗     ██║   
+██╔═══╝ ██║███╗██║██║╚██╗██║██╔══╝  ██║  ██║██╔═══╝ ██╔══██║██║     ██╔═██╗ ██╔══╝     ██║   
+██║     ╚███╔███╔╝██║ ╚████║███████╗██████╔╝██║     ██║  ██║╚██████╗██║  ██╗███████╗   ██║   
+╚═╝      ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   
+                                                                                                                                                                                
+"""
+
+print(f"{AnsiColors.GREEN}{figlet}{AnsiColors.ENDC}")
 
 if __name__=="__main__":
     DEFAULT_LOCATION="capdata/"
     DEFAULT_DURATION=10
-    Duration_input=input("How long you want to capture network ?(enter for default:60s) : ")
+    
     try:
+        Duration_input=input("How long you want to capture network ?(enter for default:60s) : ")
         if not Duration_input:
             Duration=DEFAULT_DURATION
         else:
@@ -35,4 +57,4 @@ if __name__=="__main__":
         else:
             Sniffer(Duration,FileLocation,None)
     except KeyboardInterrupt as e:
-        print(f" Exiting the tool with CTRL+C !")
+        print(f"\n\nExiting the tool with CTRL+C !")
