@@ -22,7 +22,7 @@ A basic but comprehensive command-line packet capturing tool built with Python a
 
 1.  **Clone the repository (or download the files):**
     ```bash
-    git clone <your-repository-url> # Or your method of getting the files
+    git clone https://github.com/Silambaraselvan-15/Pwned_Packet.git 
     cd Pwned_Packet
     ```
 
@@ -30,7 +30,7 @@ A basic but comprehensive command-line packet capturing tool built with Python a
     It's recommended to use a virtual environment.
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    source venv/bin/activate  
     ```
     Install the required packages using the `requirements.txt` file:
     ```bash
@@ -79,18 +79,5 @@ Pwned_Packet/
 5.  **Output**: Identified packets and their details are printed to the console with color coding.
 6.  **Saving**: After the sniffing session, all captured packets are saved to a `.pcap` file in the specified location.
 
-## Future Enhancements (Ideas)
-
-*   Interface selection.
-*   More advanced filtering options (e.g., IP address, port number ranges).
-*   Real-time statistics (e.g., packet count per protocol).
-*   Configuration file for persistent settings.
-*   GUI version.
-
-## Contributing
-
-Contributions are welcome! If you have suggestions or improvements, feel free to fork the repository, make your changes, and submit a pull request.
-
 ---
 
-*This README was generated based on the project structure and functionality observed.*
