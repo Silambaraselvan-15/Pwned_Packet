@@ -50,8 +50,8 @@ sudo python main.py
 The script will then prompt you for:
 1.  **Capture Duration**: How long (in seconds) you want to capture packets. Press Enter for the default duration.
 2.  **Save Location**: The directory where the `Captured_Data.pcap` file will be saved. Press Enter for the default location (`capdata/`).
-3.  **Filter Specific Protocol (Y/N)**: Choose 'Y' to filter for a specific protocol or 'N' to capture all traffic.
-    *   If 'Y', you will be prompted to enter the **Protocol Name** (e.g., HTTP, DNS, TCP). A list of known protocols will be suggested.
+3.  **Filter Specific Protocol (Y/N)**: Choose 'Y' to filter for a specific protocol or "enter" to capture all traffic.
+    *   If 'Y', Known protocols will be displayed and then you will be prompted to enter the **Protocol Name** 
 
 After the capture duration or if an invalid protocol (that triggers termination) is specified, the captured packets will be saved, and the program will exit. You can also stop the capture prematurely with `Ctrl+C`.
 
@@ -64,8 +64,8 @@ Pwned_Packet/
 ├── PacketProcessor.py    # Handles formatting of packet data for display
 ├── Config.py             # Configuration (known ports, default values)
 ├── requirements.txt      # Python package dependencies
-└── README.md             # This file
-└── capdata/              # Default directory for saved .pcap files (created on first save)
+└── README.md            
+└── capdata/              # Default directory for saved .pcap files (will be created on first save)
 ```
 
 ## How it Works
@@ -75,7 +75,7 @@ Pwned_Packet/
 3.  **Callback Processing**: For each captured packet, a callback function in `SnifferCore.py` is invoked.
     *   If a specific protocol filter is active, it checks if the packet matches the filter.
     *   It identifies common protocols (TCP, UDP, ICMP, ARP, and various application layer protocols based on port numbers).
-4.  **Formatting**: `PacketProcessor.py` (specifically the `StructResult` function) formats key information from the packet (MAC addresses, IP addresses) for display.
+4.  **Formatting**: `PacketProcessor.py` formats key information from the packet (MAC addresses, IP addresses) for display.
 5.  **Output**: Identified packets and their details are printed to the console with color coding.
 6.  **Saving**: After the sniffing session, all captured packets are saved to a `.pcap` file in the specified location.
 
